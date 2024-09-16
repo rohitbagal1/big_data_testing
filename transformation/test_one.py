@@ -13,8 +13,8 @@ class TestMathOperations:
     
     def test_addition(self):
         
-         df=self.execute_transformations(data.columns_to_add, data.columns_to_drop, data.column_to_capitalize)
-         assert df.collect()==df.collect(),"having hava error"
+        df = self.transformer.execute_transformations(data.columns_to_add, data.columns_to_drop, data.column_to_capitalize)
+        assert df.collect()==df.collect(),"having hava error"
 
     def test_subtraction(self):
         assert 5 - 3 == 2, "Subtraction test failed"
