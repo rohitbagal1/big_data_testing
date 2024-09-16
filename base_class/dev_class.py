@@ -14,17 +14,14 @@ from pyspark.sql.types import IntegerType
 import logging
 import os
 from pyspark.sql.functions import trim, col, regexp_replace
-from delta import DeltaTable
+
 from pyspark.sql import *
-from functools import reduce
-import copy
-import uuid
+
+
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import concat_ws
-from matplotlib import pyplot as plt
-import seaborn as sns
-from functools import reduce
-from functools import reduce
+
+
 from pyspark.sql.functions import col
 from pyspark.sql.functions import monotonically_increasing_id, col, when
 from base_class.test_class import BaseTest
