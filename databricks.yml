@@ -1,0 +1,19 @@
+# This is a Databricks asset bundle definition for big_data_testing.
+# The Databricks extension requires databricks.yml configuration file.
+# See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+
+bundle:
+  name: big_data_testing
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://adb-844558481859022.2.azuredatabricks.net
+
+  ## Optionally, there could be 'staging' or 'prod' targets here.
+  #
+  # prod:
+  #   workspace:
+  #     host: https://adb-844558481859022.2.azuredatabricks.net
