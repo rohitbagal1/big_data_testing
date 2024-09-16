@@ -23,7 +23,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.8'
+          python-version: '3.11'
 
       - name: Install Dependencies
         run: |
@@ -32,4 +32,4 @@ jobs:
 
       - name: Run pyspark
         run: |
-          python ./transformation/transformation_class.py
+          python3 ./transformation/transformation_class.py
