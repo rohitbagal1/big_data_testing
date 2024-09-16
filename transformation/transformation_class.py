@@ -45,7 +45,7 @@ class TransFormClass(BaseDev):
         
         return final_df
 
-# t = TransFormClass()
-# df=t.execute_transformations(data.columns_to_add, data.columns_to_drop, data.column_to_capitalize)
-# df.show()
+t = TransFormClass()
+df=t.execute_transformations(data.columns_to_add, data.columns_to_drop, data.column_to_capitalize)
+df.show()
 
