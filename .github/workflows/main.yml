@@ -2,7 +2,7 @@ name: Run PySpark Script and Tes
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
     branches: [main]
 
