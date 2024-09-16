@@ -1,35 +1,37 @@
-name: Run PySpark Script and Tes
+name: Run Transformation Script
 
 on:
   push:
-    branches: [master]
+    branches:
+      - master
   pull_request:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
-  run-pyspark-and-tests:
+  run-transformation:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Set up JDK 8
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'adopt'
-          java-version: '8'
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8' # Specify the Python version you need
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.11'
+    - name: Install Java
+      run: sudo apt-get install -y openjdk-11-jdk  # Required for PySpark
 
-      - name: Install Dependencies
-        run: |
-          pip install pyspark
-          pip install pytest
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyspark pytest
+        pip install -r requirements.txt # if you have a requirements file
 
-      - name: Run pyspark
-        run: |
-          python3 transformation/transformation_class.py
+    - name: Set PYTHONPATH
+      run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
+
+    - name: Run transformation script
+      run: python transformation/transformation_class.py
