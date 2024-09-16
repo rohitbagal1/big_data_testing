@@ -32,4 +32,4 @@ jobs:
 
       - name: Run pyspark
         run: |
-          python3 ./transformation/transformation_class.py
+          python3 transformation/transformation_class.py
