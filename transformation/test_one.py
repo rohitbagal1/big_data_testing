@@ -6,7 +6,7 @@
 import pytest
 from test_data import data
 from transformation.transformation_class import TransFormClass
-class TestMathOperations(TransFormClass):
+class TestMathOperations:
     @pytest.fixture(autouse=True)
     def setup(self):
         self.transformer = TransFormClass()
