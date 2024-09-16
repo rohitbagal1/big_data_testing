@@ -1,4 +1,4 @@
-name: Run PySpark Script and Tests
+name: Run PySpark Script and Tes
 
 on:
   push:
