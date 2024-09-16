@@ -7,6 +7,10 @@ import pytest
 from test_data import data
 from transformation.transformation_class import TransFormClass
 class TestMathOperations(TransFormClass):
+    @pytest.fixture(autouse=True)
+    def setup(self):
+        self.transformer = TransFormClass()
+    
     def test_addition(self):
         
          df=self.execute_transformations(data.columns_to_add, data.columns_to_drop, data.column_to_capitalize)
@@ -15,8 +19,7 @@ class TestMathOperations(TransFormClass):
     def test_subtraction(self):
         assert 5 - 3 == 2, "Subtraction test failed"
 
-t=TestMathOperations()
-print(t.test_addition())
+
 # Run pytest within the notebook
 # if __name__ == "__main__":
 
