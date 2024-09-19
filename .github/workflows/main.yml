@@ -34,5 +34,5 @@ jobs:
       run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
 
     - name: Run transformation script
-      run: pytest transformation/
+      run: pytest test_cases/
       
