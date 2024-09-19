@@ -1,4 +1,4 @@
 
-.databricks
-.venv
 .vscode
+.venv
+.databricks

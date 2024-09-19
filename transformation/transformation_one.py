@@ -1,5 +1,5 @@
 from base_class.dev_class import BaseDev
-from test_data import data
+from test_data import data_one
 
 
 class TransFormClass(BaseDev):
@@ -21,11 +21,11 @@ class TransFormClass(BaseDev):
 
     def execute_transformations(self):
         # Passing all arguments from data file
-        df = data.df
-        columns_to_add = data.columns_to_add 
-        columns_to_drop = data.columns_to_drop
-        column_to_capitalize = data.column_to_capitalize
-        expected_df = data.expected_df
+        df = data_one.df
+        columns_to_add = data_one.columns_to_add 
+        columns_to_drop = data_one.columns_to_drop
+        column_to_capitalize = data_one.column_to_capitalize
+        expected_df = data_one.expected_df
         # Add timestamp to the DataFrame
         df_with_time_stamp = self.add_time_stamp_to_df(df)
         

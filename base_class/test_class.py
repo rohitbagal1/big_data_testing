@@ -231,5 +231,16 @@ class BaseTest:
     
         except Exception as e:
             self.logger.error(f"An error occurred while dropping columns {e}")
+        
+    def compare_two_df(self, actual_df, expected_df):
+        try:
+            if actual_df.collect()==expected_df:
+                self.logger.info("Expected and Actual df's are equal")
+                return True
+            else:
+                self.logger.error(f"Expected and Actual Df's are not equal")
+                return False
+        except Exception as e:
+            self.logger.error(f"An error occurred while compairing two df {e}")
 
     
