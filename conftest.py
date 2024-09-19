@@ -9,13 +9,13 @@ def pytest_runtest_makereport(item, call):
     setattr(item, "rep_" + rep.when, rep)
 
 def pytest_html_results_table_header(cells):
-    cells.insert(2, html.th('Description'))
-    cells.insert(1, html.th('Time', class_='sortable time', col='time'))
+    cells.insert(2, '<th>Description</th>')
+    cells.insert(1, '<th class="sortable time" col="time">Time</th>')
     cells.pop()
 
 def pytest_html_results_table_row(report, cells):
-    cells.insert(2, html.td(report.description))
-    cells.insert(1, html.td(report.duration, class_='col-time'))
+    cells.insert(2, f'<td>{getattr(report, "description", "")}</td>')
+    cells.insert(1, f'<td class="col-time">{getattr(report, "duration", 0)}</td>')
     cells.pop()
 
 def pytest_html_report_title(report):
