@@ -1,7 +1,8 @@
 import pytest
-import datetime
+from datetime import datetime
+from pytest_html import extras
 
-# Specify the path and file name for the HTML report
+# Hook for making reports
 @pytest.mark.hookwrapper
 def pytest_runtest_makereport(item, call):
     outcome = yield
@@ -22,15 +23,18 @@ def pytest_html_report_title(report):
     report.title = "Pytest Automation Report"
 
 def pytest_configure(config):
-    config._metadata['Project Name'] = 'Your Project Name'
-    config._metadata['Tester'] = 'Your Name'
+    # Ensure pytest-html plugin is available
+    if config.pluginmanager.hasplugin("html"):
+        config._metadata = config._metadata or {}
+        config._metadata['Project Name'] = 'Your Project Name'
+        config._metadata['Tester'] = 'Your Name'
+    else:
+        print("pytest-html plugin is not available. Metadata will not be added.")
 
-# Generate HTML report with timestamp
 @pytest.mark.optionalhook
 def pytest_html_results_summary(prefix, summary, postfix):
-    prefix.extend([html.p("Generated at: {0}".format(datetime.now()) )])
+    prefix.extend([html.p("Generated at: {0}".format(datetime.now()))])
 
-# Specify the path and file name for the HTML report
 def pytest_html_results_table_html(report, data):
     if report.passed:
         del data[:]
