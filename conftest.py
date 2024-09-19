@@ -1,6 +1,5 @@
 import pytest
 from datetime import datetime
-from pytest_html import extras
 
 # Hook for making reports
 @pytest.mark.hookwrapper
@@ -22,10 +21,10 @@ def pytest_html_results_table_row(report, cells):
 def pytest_html_report_title(report):
     report.title = "Pytest Automation Report"
 
+@pytest.hookimpl(tryfirst=True)
 def pytest_configure(config):
-    # Ensure pytest-html plugin is available
     if config.pluginmanager.hasplugin("html"):
-        config._metadata = config._metadata or {}
+        config._metadata = getattr(config, '_metadata', {})
         config._metadata['Project Name'] = 'Your Project Name'
         config._metadata['Tester'] = 'Your Name'
     else:
@@ -33,7 +32,7 @@ def pytest_configure(config):
 
 @pytest.mark.optionalhook
 def pytest_html_results_summary(prefix, summary, postfix):
-    prefix.extend([html.p("Generated at: {0}".format(datetime.now()))])
+    prefix.extend([f"<p>Generated at: {datetime.now()}</p>"])
 
 def pytest_html_results_table_html(report, data):
     if report.passed:
