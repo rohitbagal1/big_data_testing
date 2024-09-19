@@ -19,20 +19,24 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.8' # Specify the Python version you need
+        python-version: '3.8'
 
     - name: Install Java
-      run: sudo apt-get install -y openjdk-11-jdk  # Required for PySpark
+      run: sudo apt-get install -y openjdk-11-jdk
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pyspark pytest pandas
-      
+        pip install pyspark pytest pandas pytest-html
 
     - name: Set PYTHONPATH
       run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
 
-    - name: Run transformation script
-      run: pytest test_cases/
-      
+    - name: Run transformation script with HTML report
+      run: pytest test_cases/ --html=report.html
+
+    - name: Upload HTML report as artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-report
+        path: report.html
