@@ -27,7 +27,7 @@ jobs:
         run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
 
       - name: Run transformation script with HTML report
-        run: pytest test_cases/ --html=report.html
+        run: pytest --html=report.html --self-contained-html
 
       - name: Upload HTML report as artifact
         uses: actions/upload-artifact@v3
