@@ -27,14 +27,22 @@ jobs:
         run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
 
       - name: Run transformation script with HTML report
-        run: pytest test_cases/ --html=report.html
+        run: |
+          mkdir -p reports
+          pytest test_cases/ --html=reports/report.html
         continue-on-error: true
+
+      - name: Set output
+        if: success() || failure()
+        id: results
+        run: echo "artifactPath=reports/" >> $GITHUB_OUTPUT
 
       - name: Upload HTML report as artifact
         uses: actions/upload-artifact@v3
+        if: success() || failure()
         with:
           name: test-report
-          path: report.html
+          path: ${{ steps.results.outputs.artifactPath }}
 
       - name: Build project
         run: |
@@ -66,10 +74,3 @@ jobs:
         with:
           name: build-artifacts
           path: downloaded-build-artifacts/
-
-      - name: Display downloaded test report
-        run: cat downloaded-test-report/report.html
-
-      - name: Display downloaded build artifacts
-        run: cat downloaded-build-artifacts/output.txt
-        
