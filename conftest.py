@@ -26,8 +26,9 @@ def pytest_html_report_title(report):
 
 # Add metadata to the report
 def pytest_configure(config):
-    config._metadata['Project Name'] = 'Your Project Name'
-    config._metadata['Tester'] = 'Your Name'
+    config.option.metadata = {}
+    config.option.metadata['Project Name'] = 'Your Project Name'
+    config.option.metadata['Tester'] = 'Your Name'
 
 # Add a summary message to the report
 @pytest.mark.optionalhook
