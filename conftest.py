@@ -30,6 +30,9 @@ def pytest_configure(config):
     config.option.metadata['Project Name'] = 'Your Project Name'
     config.option.metadata['Tester'] = 'Your Name'
 
+def pytest_html_results_summary(prefix):
+    prefix.extend([html.p("This demo framework is created by Rohit Bagal")])
+
 # Add a summary message to the report
 @pytest.mark.optionalhook
 def pytest_html_results_summary(prefix, summary, postfix):
