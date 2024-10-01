@@ -1,5 +1,5 @@
 import pytest
-from py.xml import html
+from pytest_html import html
 from datetime import datetime
 
 # Hook for making reports
