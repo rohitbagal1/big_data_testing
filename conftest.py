@@ -34,3 +34,8 @@ def pytest_configure(config):
 @pytest.mark.optionalhook
 def pytest_html_results_summary(prefix, summary, postfix):
     prefix.extend([f"<p>Generated at: {datetime.now()}</p>"])
+
+# Remove screenshots from the HTML report
+def pytest_html_results_table_html(report, data):
+    if 'extra' in data:
+        del data['extra']
