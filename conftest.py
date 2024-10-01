@@ -2,11 +2,15 @@ import pytest
 from datetime import datetime
 
 # Hook for making reports
-@pytest.mark.hookwrapper
+@pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
     outcome = yield
-    rep = outcome.get_result()
-    setattr(item, "rep_" + rep.when, rep)
+    report = outcome.get_result()
+    try:
+        report.description = str(item.function.__doc__) + " " + str((list(item.callspec.params.items())[0])[1])
+    except:
+        report.description = str(item.function.__doc__)
+    print(report.description)
 
 # Customize the HTML report table header
 def pytest_html_results_table_header(cells):
