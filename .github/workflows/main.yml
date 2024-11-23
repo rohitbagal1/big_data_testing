@@ -15,10 +15,10 @@ jobs:
         with:
           python-version: '3.8'
 
-      - name: Install Java 23
+      - name: Install Java 17
         run: |
           sudo apt-get update
-          sudo apt-get install -y openjdk-23-jdk
+          sudo apt-get install -y openjdk-17-jdk
 
       - name: Install dependencies
         run: |
