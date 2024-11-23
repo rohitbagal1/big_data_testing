@@ -15,8 +15,10 @@ jobs:
         with:
           python-version: '3.8'
 
-      - name: Install Java
-        run: sudo apt-get install -y openjdk-11-jdk
+      - name: Install Java 23
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openjdk-23-jdk
 
       - name: Install dependencies
         run: |
@@ -30,7 +32,7 @@ jobs:
         run: |
           mkdir -p reports
           pytest test_cases/ --html=reports/report.html --self-contained-html
-        continue-on-error: true
+          continue-on-error: true
 
       - name: Set output
         if: success() || failure()
@@ -74,4 +76,3 @@ jobs:
         with:
           name: build-artifacts
           path: downloaded-build-artifacts/
-          
