@@ -26,11 +26,8 @@ class TransFormClass(BaseDev):
         columns_to_drop = data_two.columns_to_drop
         column_to_capitalize = data_two.column_to_capitalize
         expected_df = data_two.expected_df
-        # Add timestamp to the DataFrame
-        df_with_time_stamp = self.add_time_stamp_to_df(df)
-        
         # Add city column to the DataFrame
-        df_with_city_column = self.adding_column_city(df_with_time_stamp, columns_to_add)
+        df_with_city_column = self.adding_column_city(df, columns_to_add)
         final_df = df_with_city_column
         # # Drop city column from the DataFrame
         # df_without_city_column = self.dropping_column_city(df_with_city_column, columns_to_drop)
