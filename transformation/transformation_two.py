@@ -31,12 +31,12 @@ class TransFormClass(BaseDev):
         
         # Add city column to the DataFrame
         df_with_city_column = self.adding_column_city(df_with_time_stamp, columns_to_add)
+        final_df = df_with_city_column
+        # # Drop city column from the DataFrame
+        # df_without_city_column = self.dropping_column_city(df_with_city_column, columns_to_drop)
         
-        # Drop city column from the DataFrame
-        df_without_city_column = self.dropping_column_city(df_with_city_column, columns_to_drop)
-        
-        # Capitalize name column content
-        final_df = self.captilize_name_column_content(column_to_capitalize, df_without_city_column)
+        # # Capitalize name column content
+        # final_df = self.captilize_name_column_content(column_to_capitalize, df_without_city_column)
         
         # compare expected and actual df
         status = self.compare_two_df(final_df, expected_df)
