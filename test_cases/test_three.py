@@ -2,9 +2,9 @@ import pytest
 from transformation.transformation_two import TransFormClass
 
 class TestMathOperations: 
+    transformer = TransFormClass()
     def test_employee_one(self):
-        transformer = TransFormClass() 
-        status = transformer.execute_transformations() 
+        status = self.transformer.execute_transformations() 
         assert status == True, "Status is False hence test case failed"
 
     def test_employee_two(self):
